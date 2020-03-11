@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="h-100" lang="pt-br"
+      layout:decorate="~{layout/LayoutPadrao}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+
+</head>
+<body>
+<section layout:fragment="conteudo">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Projetos Favoritados</h3>
+        </div>
+    </div>
+    <hr/>
+
+    <!-- Tabela de projetos favoritados -->
+    <table class="table table-striped table-bordered dt-responsive nowrap" id="datatable" style="width:100%"
+           th:if="not ${#lists.isEmpty(projetosFavoritos)}">
+        <thead>
+        <tr>
+            <th scope="col">Título</th>
+            <th scope="col">Status</th>
+            <th scope="col">Previsão de Entrega</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="projetoFavorito : ${projetosFavoritos}">
+            <td>
+                <a th:href="@{~/projeto/{id}/tarefa(id=${projetoFavorito.idProjeto})}" th:text="${projetoFavorito.titulo}"></a>
+            </td>
+            <td th:if="${not projetoFavorito.atrasado}" th:text="${projetoFavorito.status.descricao}"></td>
+            <td th:if="${projetoFavorito.atrasado}" class="alerta">Atrasado</td>
+            <td th:text="${#temporals.format(projetoFavorito.previsaoEntrega, 'dd/MM/yyyy')}" th:classappend="${projetoFavorito.atrasado} ? 'alerta'"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row" th:if="${#lists.isEmpty(projetosFavoritos)}">
+        <span>Nenhum projeto favoritado.</span>
+    </div>
+    <hr/>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Próximas Entregas</h3>
+        </div>
+    </div>
+    <hr/>
+    <!-- Tabela com 5 próximos projetos a serem entregues -->
+    <table class="table table-striped table-bordered dt-responsive nowrap" id="datatable" style="width:100%"
+           th:if="not ${#lists.isEmpty(proximasEntregas)}">
+        <thead>
+        <tr>
+            <th scope="col">Título</th>
+            <th scope="col">Status</th>
+            <th scope="col">Previsão de Entrega</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="entregaProjeto : ${proximasEntregas}">
+            <td>
+                <a th:href="@{~/projeto/{id}/tarefa(id=${entregaProjeto.idProjeto})}" th:text="${entregaProjeto.titulo}"></a>
+            </td>
+            <td th:if="${not entregaProjeto.atrasado}" th:text="${entregaProjeto.status.descricao}"></td>
+            <td th:if="${entregaProjeto.atrasado}" class="alerta">Atrasado</td>
+            <td th:text="${#temporals.format(entregaProjeto.previsaoEntrega, 'dd/MM/yyyy')}" th:classappend="${entregaProjeto.atrasado} ? 'alerta'"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row" th:if="${#lists.isEmpty(proximasEntregas)}">
+        <span>Nenhum projeto encontrado.</span>
+    </div>
+</section>
+
+<th:block layout:fragment="javascript-extra">
+
+</th:block>
+</body>
+</html>

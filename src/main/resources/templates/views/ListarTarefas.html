@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="h-100" lang="pt-br"
+      layout:decorate="~{layout/LayoutPadrao}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:data="http://www.thymeleaf.org/extras/data">
+
+<head>
+
+</head>
+<body>
+<section layout:fragment="conteudo">
+    <th:block th:include="fragments/MensagemSucesso"></th:block>
+    <th:block th:include="fragments/MensagemErroGenerica"></th:block>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 th:text="${projeto.titulo}"></h1>
+            <h5 th:text="|Previsão de Entrega: ${#temporals.format(projeto.previsaoEntrega, 'dd/MM/yyyy')}|"></h5>
+        </div>
+    </div>
+    <hr/>
+    <div class="container">
+        <div class="row justify-content-end">
+            <a class="btn btn-primario m-2" role="button"
+               th:href="@{~/projeto/{idProjeto}/tarefa/cadastrar(idProjeto=${projeto.idProjeto})}"><i
+                    class="fas fa-plus mr-2"></i>Nova Tarefa</a>
+        </div>
+    </div>
+    <hr/>
+    <!-- Fragmento com os cards de tarefa -->
+    <th:block th:fragment="tarefas-block">
+    <div class="row" th:if="not ${#lists.isEmpty(tarefas)}">
+        <div class="col-md-4 py-2" th:each="tarefa : ${tarefas}">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 class="card-title" th:text="${tarefa.titulo}"></h5>
+                            <p th:if="${exibirSubtitulo}"><small th:text="${tarefa.projeto.titulo}"></small></p>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-danger btn-sm mt-2 ml-2 float-right" type="button"
+                                    data-toggle="modal" data-target="#modalExclusao"
+                                    data:url="@{~/projeto/{idProjeto}/tarefa/{idTarefa}/excluir(idProjeto=${tarefa.projeto.idProjeto},idTarefa=${tarefa.idTarefa})}">
+                                <i class="far fa-trash-alt"></i></button>
+                            <a class="btn btn-info btn-sm mt-2 ml-2 float-right" role="button"
+                               th:href="@{~/projeto/{idProjeto}/tarefa/{idTarefa}(idProjeto=${tarefa.projeto.idProjeto},idTarefa=${tarefa.idTarefa})}"><i
+                                    class="far fa-edit"></i></a>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p th:text="${#strings.abbreviate(tarefa.descricao, 70)}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <span th:if="${#lists.isEmpty(tarefas)}">Nenhuma tarefa para exibir.</span>
+    <div th:if="${not #lists.isEmpty(tarefas)}" class="modal fade" id="modalExclusao" data-backdrop="static" tabindex="-1" role="dialog" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmação de Exclusão</h5>
+                </div>
+                <div class="modal-body">
+                    Tem certeza que deseja excluir essa tarefa?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <a role="button" class="btn btn-danger" id="btn-deletar">Excluir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </th:block>
+</section>
+
+<th:block layout:fragment="javascript-extra">
+
+    <script th:src="@{~/js/modal_exclusao.js}"></script>
+
+</th:block>
+</body>
+</html>

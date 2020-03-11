@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html class="h-100" lang="pt-br"
+      layout:decorate="~{layout/LayoutPadrao}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{~/layout/css/vendors/bootstrap-datepicker3.css}"/>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center" th:if="${projeto.novo}">Novo Projeto</h1>
+            <h1 class="text-center" th:unless="${projeto.novo}">Editar Projeto</h1>
+        </div>
+    </div>
+    <hr/>
+    <div class="row justify-content-center">
+        <div class="col-md-6 my-auto">
+
+            <form method="post" th:object="${projeto}">
+
+                <th:block th:include="fragments/MensagemErroValidacao"></th:block>
+                <input th:field="*{idProjeto}" type="hidden"/>
+                <input type="hidden" th:field="*{favoritado}">
+
+                <div class="form-group required">
+                    <label for="titulo">Título:</label>
+                    <input class="form-control" id="titulo" placeholder="Ex.: Gerenciamento do App" th:errorclass="is-invalid"
+                           th:field="*{titulo}" type="text">
+                </div>
+
+                <div class="form-group required">
+                    <label for="previsao-entrega">Previsão de Entrega:</label>
+                    <input class="datepicker form-control"  id="previsao-entrega" placeholder="01/01/1990"
+                           data-date-format="mm/dd/yyyy" th:field="*{previsaoEntrega}" th:errorclass="is-invalid">
+                </div>
+
+
+                <div class="form-group required" th:if="*{not novo}">
+                    <label for="sexo" class="control-label">Status:</label>
+                    <select id="sexo" class="form-control" th:field="*{status}">
+                        <option th:each="status : ${statusLista}" th:value="${status}" th:text="${status.descricao}"></option>
+                    </select>
+                </div>
+
+
+                <button class="btn btn-primario btn-lg" type="submit">Salvar</button>
+                <a class="btn btn-outline-secondary btn-lg float-right" role="button"  th:href="@{~/}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</section>
+
+<th:block layout:fragment="javascript-extra">
+
+    <script th:inline="javascript">
+        var previsaoEntrega = [[${#temporals.format(projeto.previsaoEntrega, 'yyyy-MM-dd')}]];
+    </script>
+
+
+    <script th:src="@{~/js/vendors/bootstrap-datepicker.min.js}"></script>
+    <script th:src="@{~/js/vendors/bootstrap-datepicker.pt.js}"></script>
+
+    <script th:src="@{~/js/cadastro_projeto.js}"></script>
+</th:block>
+
+</body>
+</html>

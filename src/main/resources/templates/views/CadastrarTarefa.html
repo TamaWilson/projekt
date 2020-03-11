@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="h-100" lang="pt-br"
+      layout:decorate="~{layout/LayoutPadrao}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{~/layout/css/vendors/bootstrap-datepicker3.css}"/>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center" th:if="${tarefa.novo}">Novo Tarefa</h1>
+            <h1 class="text-center" th:unless="${tarefa.novo}">Editar Tarefa</h1>
+        </div>
+    </div>
+    <hr/>
+    <div class="row justify-content-center">
+        <div class="col-md-6 my-auto">
+
+            <form method="post" th:object="${tarefa}">
+
+                <th:block th:include="fragments/MensagemErroValidacao"></th:block>
+
+                <input th:field="*{idTarefa}" type="hidden"/>
+
+                <div class="form-group required">
+                    <label for="titulo">Título:</label>
+                    <input class="form-control" id="titulo" placeholder="Ex.: Gerenciamento do App"
+                           th:errorclass="is-invalid"
+                           th:field="*{titulo}" type="text">
+                </div>
+
+                <div class="form-group required">
+                    <label for="descricao">Descrição:</label>
+                    <textarea class="form-control" id="descricao" rows="3" th:errorclass="is-invalid"
+                              th:field="*{descricao}"  maxlength="140"></textarea>
+                    <p style="color: grey;" class="text-right"><small id="contador-letras">140</small></p>
+                </div>
+
+                <button class="btn btn-primario btn-lg" type="submit">Salvar</button>
+                <a class="btn btn-outline-secondary btn-lg float-right" role="button" th:href="@{~/}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</section>
+<th:block layout:fragment="javascript-extra">
+
+    <script th:src="@{~/js/cadastro_tarefa.js}"></script>
+</th:block>
+
+</body>
+
+
+</html>

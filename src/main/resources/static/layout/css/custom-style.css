@@ -1,0 +1,33 @@
+.bg-primario {
+    background-color: royalblue;
+}
+
+.btn-primario {
+    color: #fff;
+    background-color: royalblue;
+    border-color: royalblue;
+}
+
+.btn-primario:hover {
+    color: #fff;
+    background-color: darkblue;
+    border-color: darkblue;
+}
+
+.card-columns {
+    column-count: 4;
+}
+
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+}
+
+.gold {
+    color: gold;
+}
+
+.alerta {
+    color: red;
+    font-weight: bold;
+}

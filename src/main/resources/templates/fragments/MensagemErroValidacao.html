@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+    <th:block th:each="detailedError : ${#fields.detailedErrors()}">
+        <div><i class="fa fa-exclamation-circle mr-2"></i>[[${detailedError.message}]]</div>
+    </th:block>
+</div>
+
+</body>
+</html>

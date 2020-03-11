@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html class="h-100" lang="pt-br"
+      layout:decorate="~{layout/LayoutPadrao}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Pesquisar Tarefas</h1>
+        </div>
+    </div>
+    <hr/>
+    <div class="container">
+        <label for="pesquisar">Pesquisar:</label>
+        <div class="input-group mb-3">
+            <input id="pesquisar" type="text" class="form-control" placeholder="Digite o título da tarefa....">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <!-- Preenchido com o fragmento de cards da tarefa-->
+    <div id="resultados">
+        <span>Nenhuma tarefa para exibir.</span>
+    </div>
+</section>
+
+<th:block layout:fragment="javascript-extra">
+
+        <script th:src="@{~/js/pesquisar_tarefa.js}"></script>
+        <script th:src="@{~/js/modal_exclusao.js}"></script>
+
+</th:block>
+</body>
+</html>

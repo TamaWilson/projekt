@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<th:block th:fragment="erros-genericos">
+<div class="alert alert-danger" role="alert" th:if="${not #strings.isEmpty(mensagemErro)}" id="erros-mensagens">
+    <th:block th:each="mensagem : ${mensagemErro}">
+        <div><i class="fa fa-exclamation-circle mr-2"></i>[[${mensagem}]]</div>
+    </th:block>
+</div>
+</th:block>
+</body>
+</html>
