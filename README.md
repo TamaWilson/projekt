@@ -17,12 +17,14 @@ Teste prático para Grupo Mateus.
 Clonar este repositório e executar o projeto conforme instruções abaixo:
 
 **Opção 1:**
- - Entrar na raiz do projeto via terminal ou cmd e executar o comando
-   `mvn spring-boot:run`
+ * Entrar na raiz do projeto via terminal ou cmd e executar o comando abaixo:
+   * No Linux: `./mvnw spring-boot:run`
+   * No Windows: `mvnw.cmd spring-boot:run`
 
 **Opção 2:**
- - Entrar na pastar *Release* via terminal ou cmd e executar o comando `java -jar projekt-0.0.1-SNAPSHOT.jar`
-
+ * Entrar na pastar *Release* via terminal ou cmd e executar o comando `java -jar projekt-0.0.1-SNAPSHOT.jar`
+ 
+Aguardar o Maven baixar toda as depedências.
 Após iniciado a aplicação pode ser acessada no pela url `http://localhost:8080`
 
 # Base de dados
