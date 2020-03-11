@@ -6,7 +6,6 @@ import br.com.tama.projekt.models.Tarefa;
 import br.com.tama.projekt.services.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,9 +23,9 @@ import javax.validation.Valid;
  * @author Wilson Ferreira
  */
 
-/**
- * Este controller sempre recebe como parameto no caminho da url um id de projeto
- */
+//
+//* Este controller sempre recebe como parameto no caminho da url um id de projeto
+//
 @Controller
 @RequestMapping(value = "/projeto/{idProjeto}/tarefa")
 public class TarefaController {
@@ -64,9 +63,7 @@ public class TarefaController {
      */
     @GetMapping("/cadastrar")
     public ModelAndView novo(@PathVariable("idProjeto") Projeto projeto, Tarefa tarefa) {
-        ModelAndView mv = new ModelAndView("views/CadastrarTarefa");
-
-        return mv;
+        return new ModelAndView("views/CadastrarTarefa");
     }
 
     /**
