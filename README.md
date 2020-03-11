@@ -22,7 +22,7 @@ Clonar este repositório e executar o projeto conforme instruções abaixo:
    * No Windows: `mvnw.cmd spring-boot:run`
 
 **Opção 2:**
- * Entrar na pastar *Release* via terminal ou cmd e executar o comando `java -jar projekt-0.0.1-SNAPSHOT.jar`
+ * Entrar na pastar *Release* via terminal ou cmd e executar o comando `java -Dfile.encoding=UTF-8 -jar projekt-0.0.1-SNAPSHOT.jar`
  
 Aguardar o Maven baixar toda as depedências.
 Após iniciado a aplicação pode ser acessada no pela url `http://localhost:8080`
