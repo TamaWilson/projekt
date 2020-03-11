@@ -2,7 +2,7 @@ INSERT INTO PROJETO(titulo, previsao_entrega, favoritado) values ('Projeto 1', '
 INSERT INTO PROJETO(titulo, previsao_entrega) values ('Projeto 2', '2020-04-13' );
 INSERT INTO PROJETO(titulo, previsao_entrega) values ('Projeto 3', '2020-03-04' );
 INSERT INTO PROJETO(titulo, previsao_entrega) values ('Projeto 4', '2020-05-01' );
-INSERT INTO PROJETO(titulo, previsao_entrega, favoritado) values ('Projeto 5', '2020-03-10', true );
+INSERT INTO PROJETO(titulo, previsao_entrega, favoritado) values ('Projeto 5', '2020-03-19', true );
 INSERT INTO PROJETO(titulo, previsao_entrega) values ('Projeto 6', '2020-04-01' );
 INSERT INTO PROJETO(titulo, previsao_entrega,status) values ('Projeto 7', '2020-01-01',1 );
 INSERT INTO PROJETO(titulo, previsao_entrega) values ('Projeto 8', '2020-07-23' );

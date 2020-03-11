@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
@@ -82,6 +83,18 @@ public class WebConfig implements ApplicationContextAware, WebMvcConfigurer {
         resolver.setTemplateMode(TemplateMode.HTML);
         return resolver;
     }
-
+    
+    /** 
+     * Configuração para processamento correto dos acentos na view
+     * @return Objeto Filter com configuração necessária
+     */
+    
+    @Bean
+    CharacterEncodingFilter characterEncodingFilter() {
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        return filter;
+    }
 
 }
