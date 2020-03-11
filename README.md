@@ -12,6 +12,11 @@ Teste prático para Grupo Mateus.
 - Flyway
 - JQuery
 - Boostrap
+# Ambiente
+O ambiente para execução deste aplicação deve possuir o JDK (1.8+) instalado corretamente.
+
+* [Instalando JDK no Windows](https://www.youtube.com/watch?v=00GDveAy8dA)
+* [Instalando JDK no Linux](https://www.youtube.com/watch?v=WgrBHdQetcU)
 
 # Execução
 Clonar este repositório e executar o projeto conforme instruções abaixo:
@@ -25,7 +30,8 @@ Clonar este repositório e executar o projeto conforme instruções abaixo:
  * Entrar na pastar *Release* via terminal ou cmd e executar o comando `java -Dfile.encoding=UTF-8 -jar projekt-0.0.1-SNAPSHOT.jar`
  
 Aguardar o Maven baixar toda as depedências.
-Após iniciado a aplicação pode ser acessada no pela url `http://localhost:8080`
+
+Após iniciada, a aplicação pode ser acessada no pela url `http://localhost:8080`
 
 # Base de dados
 O banco de dados da aplicação é resetado a cada execução e populados com dados pré-configurados contendo:
